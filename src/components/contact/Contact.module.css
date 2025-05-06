@@ -1,0 +1,23 @@
+
+.info{
+    display: flex;
+  flex-direction: column; 
+  font-size: large;
+  font-weight: 500;
+  align-items: flex-start;
+  text-decoration:underline;
+}
+.icon{
+    margin-right: 2px;
+    width: 36px;
+    height: 22px;
+}
+.delete{
+    margin-left: 2px;
+    margin-top: 30px;
+    background-color: rgb(170, 159, 180);
+    border: solid 1px #1a062a;
+}
+.delete:hover{
+    background-color: rgb(219, 52, 52);
+}

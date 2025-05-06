@@ -1,0 +1,17 @@
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0;
+   
+}
+.item{
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 280px; 
+    box-shadow: 5px 5px 60px rgba(70, 23, 101, 0.304);
+}

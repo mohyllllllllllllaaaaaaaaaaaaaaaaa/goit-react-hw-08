@@ -1,0 +1,20 @@
+.search{
+    width: 340px;
+    padding: 8px;
+}
+.search:hover{
+  border-color: rgb(53, 20, 68);
+}
+.searchbox{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 8px;
+    margin-left: 30px;
+}
+.text{
+    font-weight: bold;
+    color: rgb(21, 18, 24);
+    font-size: large;
+   margin: 2px;
+}
