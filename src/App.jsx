@@ -1,30 +1,40 @@
-import './App.css'
-import ContactList from './components/contactList/ContactList';
-import ContactForm from './components/contactForm/ContactForm';
-import SearchBox from './components/searchBox/SearchBox';
+import { Route, Routes } from 'react-router-dom';
+import Home from './pages/HomePage';
+import Login from './pages/LoginPage';
+import Register from './pages/RegistrationPage ';
+import ContactsPage from './pages/ContactsPage';
+import NotFound from './pages/NotFoundPage';
+import Layout from './components/layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContacts } from './redux/contactsOps';
-import { selectError, selectLoading } from './redux/contactsSlice';
-import { FaAddressCard } from "react-icons/fa";
+import { refreshThunk } from './redux/auth/operations';
+import { selectIsRefreshing } from './redux/auth/selectors';
+import PrivateRoute from './components/PrivateRoute';
+import ResttrictedRoute from './components/RestrictedRoute';
+import  EditForm  from './components/editForm/EditForm';
 
 function App() {
   const dispatch = useDispatch();
-  const error = useSelector(selectError);
-const loading = useSelector(selectLoading);
+  const isRefreshing = useSelector(selectIsRefreshing);
   useEffect(() => {
-    dispatch(fetchContacts());
-  },[dispatch]);
-  return (
-    <div>
-      <header><h1>Phonebook<FaAddressCard className='icon'/></h1></header>
-      <ContactForm />
-      <SearchBox  />
-      {loading && <p>Loading ...</p>}
-      {error && <p>Something went wrong!</p>}
-      {!loading && !error && <ContactList  />}
-      
-    </div>
+    dispatch(refreshThunk());
+  }, [dispatch]);
+
+  return isRefreshing ? null : (
+    <Routes>
+      <Route path='/' element={<Layout/>}>
+      <Route index element={<Home/> }/>
+      <Route path='/login' element={<ResttrictedRoute component={<Login/>} redirectTo='/contacts' />}/>
+      <Route path='/register' element={<Register/> }/>
+       <Route path="/contacts/edit/:contactId" element={<EditForm />} />
+      <Route path='contacts' element={
+      <PrivateRoute>
+      <ContactsPage/>
+      </PrivateRoute>} />
+      <Route path='*' element={<NotFound/> }/>
+      </Route>
+    </Routes>
+   
   );
 }
 export default App;

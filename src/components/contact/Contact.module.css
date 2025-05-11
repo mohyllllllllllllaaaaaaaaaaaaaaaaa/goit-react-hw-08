@@ -21,3 +21,17 @@
 .delete:hover{
     background-color: rgb(219, 52, 52);
 }
+.editButton {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .editButton:hover {
+    background-color: darkblue;
+  }

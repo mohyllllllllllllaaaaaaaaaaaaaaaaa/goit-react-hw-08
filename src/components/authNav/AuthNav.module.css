@@ -1,0 +1,13 @@
+.list{
+    display: flex;
+    gap: 18px;
+}
+.link {
+    text-decoration: none;
+    color: rgb(217, 206, 224);
+  }
+  
+  .active {
+    color: red;
+    font-weight: bold;
+  }

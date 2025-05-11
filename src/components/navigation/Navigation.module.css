@@ -1,0 +1,18 @@
+.header{
+    display: flex;
+    gap: 8px;
+}
+.navlist{
+    display: flex;
+    gap: 10px;
+}
+
+  .link {
+    text-decoration: none;
+    color: rgb(217, 206, 224);
+  }
+  
+  .active {
+    color: red;
+    font-weight: bold;
+  }
