@@ -32,7 +32,6 @@ const RegistrationForm = () => {
   };
   const handeleSubmit = async (values, { resetForm }) => {
     const resultAction = await dispatch(registerThunk(values));
-    console.log('Submitted values:', values);
     if (registerThunk.fulfilled.match(resultAction)) {
       toast.success(' Registration successful!');
       resetForm();
