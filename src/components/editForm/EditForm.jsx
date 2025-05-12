@@ -1,41 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeContact } from '../../redux/contacts/operations'; 
-import { Link, useNavigate, useParams} from 'react-router-dom'; 
+import { changeContact } from '../../redux/contacts/operations';  
 import styles from './EditForm.module.css';
 
-const EditForm = () => {
+
+const EditForm = ({contact, onClose}) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { contactId } = useParams();
-  const { contacts, loading, error } = useSelector((state) => state.contacts);
-
-  const contactToEdit = Array.isArray(contacts) ? contacts.find(contact => contact.id === contactId) : null;
- 
-  const [name, setName] = useState(contactToEdit ? contactToEdit.name : '');
-  const [phone, setPhone] = useState(contactToEdit ? contactToEdit.phone : '');
-
+  const error = useSelector((state) => state.contacts.error);
+  const loading = useSelector((state) => state.contacts.loading);
+  const [name, setName] = useState(contact.name);
+  const [number, setNumber] = useState(contact.number);
 
   useEffect(() => {
-    if (contactToEdit) {
-      setName(contactToEdit.name);
-      setPhone(contactToEdit.phone);
-    }
-  }, [contactToEdit]);
+   setName(contact.name);
+   setNumber(contact.number);
+  }, [contact]);
 
   const handleSubmit =  (e) => {
     e.preventDefault();
     const updatedContact = {
-      id: contactId,
+      id: contact.id,
       name,
-      phone,
+      number,
     };
     
     dispatch(changeContact(updatedContact));
-    navigate('/contacts');
+    onClose();
   };
 
   return (
+    <div className={styles.backdrop}>
     <form   className={styles.form} onSubmit={handleSubmit}>
       <h2>Edit Contact</h2>
       <div>
@@ -53,17 +47,20 @@ const EditForm = () => {
         <input className={styles.field}
           type="tel"
           id="number"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          value={number}
+          onChange={(e) => setNumber(e.target.value)}
           required
         />
       </div>
       <button className={styles.button} type="submit" disabled={loading}>
         {loading ? 'Saving...' : 'Save Changes'}
       </button>
+      <button type="button" className={styles.cancel} onClick={onClose}>
+          Cancel
+        </button>
       {error && <p>{error}</p>}
-      <Link to='/contacts'  className={styles.link} >Go to back</Link>
     </form>
+    </div>
   );
 };
 

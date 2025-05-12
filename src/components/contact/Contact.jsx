@@ -3,13 +3,12 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contacts/operations';
-import { Link } from 'react-router-dom';
 import DeleteModal from '../deleteModal/DeleteModal';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
 
-const Contact = ({ contact}) => {
+const Contact = ({ contact, onEdit}) => {
   const dispatch = useDispatch();
   const[isModalOpen, setIsModalOpen] = useState(false);
   const handleDelete = async () => {
@@ -35,7 +34,7 @@ const Contact = ({ contact}) => {
           </div>
           <div className={css.buttonBox}>
       <button className={css.delete} onClick={handleOpenModal}>Delete</button>
-      <Link to={`/contacts/edit/${contact.id}`} className={css.editButton}>Edit</Link>
+      <button className={css.editButton} onClick={() => onEdit(contact)}>Edit</button>
       </div>
       <DeleteModal
         isOpen={isModalOpen}

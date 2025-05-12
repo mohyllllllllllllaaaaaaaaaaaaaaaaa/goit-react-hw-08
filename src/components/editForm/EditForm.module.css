@@ -1,15 +1,31 @@
 .form{
     border: none;
-    box-shadow:
-    -5px 0 10px rgba(0, 0, 0, 0.2), 
-     0 5px 10px rgba(0, 0, 0, 0.2);
-     border-radius: 8px;
      width: 380px;
-     padding: 8px;
      display: flex;
      flex-direction: column;
      gap: 10px;
      margin-left: 80px;
+     background-color: #fff;
+     padding: 20px 30px;
+     border-radius: 8px;
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+     z-index: 1001; 
+}
+.backdrop{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 60px rgba(70, 23, 101, 0.304);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+    justify-content: center;
+    align-items: center;
+    z-index: 300; 
 }
 .label{
     font-size: medium;
@@ -21,6 +37,16 @@
 .button{
     color: white;
     background-color: rgba(0, 0, 0, 0.597);
+}
+.cancel{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.597); 
+}
+.button:hover{
+    background-color: rgb(131, 208, 49);
+}
+.cancel:hover{
+    background-color: rgb(89, 46, 104);
 }
 .link{
     margin-top: 5px;

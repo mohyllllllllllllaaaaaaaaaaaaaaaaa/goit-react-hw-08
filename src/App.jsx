@@ -10,8 +10,7 @@ import { useEffect } from 'react';
 import { refreshThunk } from './redux/auth/operations';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import PrivateRoute from './components/PrivateRoute';
-import ResttrictedRoute from './components/RestrictedRoute';
-import  EditForm  from './components/editForm/EditForm';
+import RestrictedRoute from './components/RestrictedRoute';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -20,24 +19,27 @@ function App() {
   useEffect(() => {
     dispatch(refreshThunk());
   }, [dispatch]);
-
-  return isRefreshing ? null : (
-    <>
-     <Toaster position="top-center" reverseOrder={false} />
-    <Routes>
-      <Route path='/' element={<Layout/>}>
-      <Route index element={<Home/> }/>
-      <Route path='/login' element={<ResttrictedRoute component={<Login/>} redirectTo='/contacts' />}/>
-      <Route path='/register' element={<Register/> }/>
-       <Route path="/contacts/edit/:contactId" element={<EditForm />} />
-      <Route path='contacts' element={
-      <PrivateRoute>
-      <ContactsPage/>
-      </PrivateRoute>} />
-      <Route path='*' element={<NotFound/> }/>
-      </Route>
-    </Routes>
-    </>
-  );
-}
+  if (isRefreshing) {
+    return <div>Loading...</div>; 
+  }
+  
+    return (
+      <>
+        <Toaster position="top-center" reverseOrder={false} />
+        <Routes>
+          <Route path='/' element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path='/login' element={<RestrictedRoute component={<Login />} redirectTo='/contacts' />} />
+            <Route path='/register' element={<RestrictedRoute component={<Register />} redirectTo='/contacts' />} />
+            <Route
+            path='/contacts'
+            element={<PrivateRoute component={<ContactsPage />} redirectTo='/login' />}
+          />
+            <Route path='*' element={<NotFound />} />
+          </Route>
+        </Routes>
+      </>
+    );
+  }
+  
 export default App;

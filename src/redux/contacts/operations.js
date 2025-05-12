@@ -32,7 +32,7 @@ export const changeContact = createAsyncThunk('contacts/changeContact', async (c
     try {
         const response = await goitAPI.patch(`/contacts/${contactData.id}`, {
             name: contactData.name,
-            number: contactData.phone,
+            number: contactData.number,
         });
         return response.data;
     } catch (error) {
