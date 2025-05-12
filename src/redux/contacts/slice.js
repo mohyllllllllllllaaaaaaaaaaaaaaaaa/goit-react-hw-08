@@ -68,7 +68,7 @@ const contactsSlice = createSlice({
       })
       .addCase(changeContact.rejected, (state, action) => {
         state.contacts.loading = false;
-        state.error = action.payload;
+        state.contacts.error = action.payload;
       })
       .addCase(logoutThunk.fulfilled, (state) => {
         state.contacts.items = [];

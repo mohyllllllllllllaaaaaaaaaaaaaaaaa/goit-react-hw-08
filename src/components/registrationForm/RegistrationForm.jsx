@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { registerThunk } from '../../redux/auth/operations';
 import styles from './RegistrationForm.module.css';
 import * as Yup from 'yup';
+import toast from 'react-hot-toast';
 
 
 const RegistrationForm = () => {
@@ -18,7 +19,8 @@ const RegistrationForm = () => {
       .max(28, 'Too long!')
       .required('Required'),
     password: Yup.string()
-      .min(6, 'Too short!')
+      .min(5, 'Too short!')
+      .max(18, 'Too long!')
       .required('Required'),
   });
 
@@ -28,11 +30,16 @@ const RegistrationForm = () => {
     email: '',
     password: '',
   };
-  
-  const handeleSubmit = (values, {resetForm}) =>{
-    dispatch(registerThunk(values));
-    resetForm();
-  }
+  const handeleSubmit = async (values, { resetForm }) => {
+    const resultAction = await dispatch(registerThunk(values));
+    console.log('Submitted values:', values);
+    if (registerThunk.fulfilled.match(resultAction)) {
+      toast.success(' Registration successful!');
+      resetForm();
+    } else {
+      toast.error(resultAction.payload || ' Something went wrong during registration.');
+    }
+  };
   return (
     <Formik initialValues={initialValues}  validationSchema={validationSchema} onSubmit={handeleSubmit}>
       <Form autoComplete='off' className={styles.form}>
