@@ -56,7 +56,7 @@ const contactsSlice = createSlice({
         state.contacts.error = action.payload;
       })
       .addCase(changeContact.pending, (state) => {
-        state.loading = true;
+        state.contacts.loading = true;
       })
       .addCase(changeContact.fulfilled, (state, action) => {
         state.contacts.loading = false;
@@ -66,7 +66,7 @@ const contactsSlice = createSlice({
         }
       })
       .addCase(changeContact.rejected, (state, action) => {
-        state.loading = false;
+        state.contacts.loading = false;
         state.error = action.payload;
       })
   },

@@ -1,14 +1,19 @@
-import { setNameFilter } from '../../redux/filters/slice';
-import { selectNameFilter } from '../../redux/filters/selectors';
+import { setNameFilter, setPhoneFilter } from '../../redux/filters/slice';
+import { selectNameFilter, selectPhoneFilter } from '../../redux/filters/selectors';
 import css from './SearchBox.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 
 
 const SearchBox = () => {
    const dispatch = useDispatch();
-   const  value = useSelector(selectNameFilter);
+   const nameFilteredValue = useSelector(selectNameFilter);
+   const phoneFilteredValue = useSelector(selectPhoneFilter);
+  
 const handeleCheange = (event) => {
     dispatch(setNameFilter(event.target.value));
+};
+const handelePhoneChange = (event) => {
+    dispatch(setPhoneFilter(event.target.value));
 };
     return (
         <div className={css.searchbox}>
@@ -17,7 +22,13 @@ const handeleCheange = (event) => {
         type="text"
         placeholder="Serch contacts..."
         onChange={handeleCheange}
-        value ={value}/>
+        value ={nameFilteredValue}/>
+         <p className={css.text}>Find contact by phone</p>
+        <input className={css.search}
+        type="phone"
+        placeholder="Serch contacts..."
+        onChange={handelePhoneChange}
+        value ={phoneFilteredValue}/>
         </div>
     )
     };

@@ -1,9 +1,10 @@
 import { Formik, Form,Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import  css from './ContactForm.module.css';
 import { useDispatch, useSelector} from 'react-redux';
 import { selectContacts} from '../../redux/contacts/selectors';
 import { addContact } from '../../redux/contacts/operations';
+import toast from 'react-hot-toast';
+import * as Yup from 'yup';
 
 
 const ContactForm = () => {
@@ -22,11 +23,12 @@ const ContactForm = () => {
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
         if (contacts.some(contact => contact.name.toLowerCase() === values.name.toLowerCase())) {
-          alert(`${values.name} is already in contacts.`);
+          toast.error(`${values.name} is already in contacts.`);
           return;
         }
         const newContact = { ...values };
        dispatch(addContact(newContact));
+       toast.success('Add new contact');
         resetForm();
       }}
     >

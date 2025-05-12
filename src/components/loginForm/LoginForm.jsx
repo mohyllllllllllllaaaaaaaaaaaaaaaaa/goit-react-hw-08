@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { loginThunk } from '../../redux/auth/operations';
 import styles from './LoginForm.module.css';
 
+
 const initialValues = {
   email: '',
   password: '',
@@ -11,8 +12,8 @@ const initialValues = {
 
 const validate = (values) => {
   const errors = {};
-  if (!values.email) errors.email = 'Email обовʼязковий';
-  if (!values.password) errors.password = 'Пароль обовʼязковий';
+  if (!values.email) errors.email = 'Email is requer';
+  if (!values.password) errors.password = 'Password is requer';
   return errors;
 };
 
@@ -30,13 +31,13 @@ const LoginForm = () => {
       <Form autoComplete="off" className={styles.form} >
         <div>
           <label className={styles.label}  htmlFor="email">Email</label>
-          <Field className={styles.field} type="email" name="email" />
+          <Field className={styles.field} type="email" name="email" id="email" />
           <ErrorMessage name="email" component="div" />
         </div>
 
         <div>
           <label className={styles.label} htmlFor="password">Password</label>
-          <Field className={styles.field} type="password" name="password" />
+          <Field className={styles.field} type="password" name="password" id="password"  />
           <ErrorMessage name="password" component="div" />
         </div>
        <Link className={styles.link} to='/register'>You don't have account? Sign Up!</Link>

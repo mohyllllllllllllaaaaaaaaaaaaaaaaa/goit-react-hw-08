@@ -12,7 +12,7 @@ const Login = () => {
     <div>
         <main>
      <h2>Sing In!</h2>
-     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium reiciendis rem laborum nihil culpa omnis, cum pariatur ad porro tempora cumque facere modi blanditiis praesentium illo id quos molestiae? Obcaecati.</p>
+     <p>Please enter your email and password to access your contacts.</p>
      <LoginForm/> 
      </main> 
      </div>

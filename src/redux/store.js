@@ -15,6 +15,7 @@ import {
 import { authReducer } from "./auth/slice";
 
 
+const createPersistedReducer = (reducer, config) => persistReducer(config, reducer);
 
   const persistConfig = {
     key: 'root-auth',
@@ -22,16 +23,14 @@ import { authReducer } from "./auth/slice";
     storage,
     whitelist: ['token'],
   };
-
-  const persistedReducerAuth = persistReducer(persistConfig, authReducer);
-  
-  const persistedReducerContact = persistReducer(persistConfig, contactReducer);
   const persistConfigFilter = {
     key: 'filter',
     version: 1,
     storage,
   };
-  const persistedReducerFilter = persistReducer(persistConfigFilter, filterReducer);
+const persistedReducerAuth = createPersistedReducer(authReducer, persistConfig);
+const persistedReducerContact = createPersistedReducer(contactReducer, persistConfig); 
+const persistedReducerFilter = createPersistedReducer(filterReducer, persistConfigFilter);
 
  export  const store = configureStore({
 reducer: {

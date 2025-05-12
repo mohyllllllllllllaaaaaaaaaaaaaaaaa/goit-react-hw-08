@@ -38,8 +38,8 @@ builder
 .addCase(refreshThunk.rejected, (state) => {
   state.isRefreshing = false;
 })
-.addCase(logoutThunk.fulfilled, () => initialState);
-    },
-  })
+.addCase(logoutThunk.fulfilled, () =>  initialState);
+}
+ });
  
   export const authReducer = slice.reducer;

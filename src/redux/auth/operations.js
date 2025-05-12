@@ -40,11 +40,11 @@ removeAuthHeader();
 });
 export const refreshThunk = createAsyncThunk('user/refresh', async(__, thunkAPI) => {
     try{
-        const saveTokin = thunkAPI.getState().auth.token;
-        if(!saveTokin) {
+        const savedToken = thunkAPI.getState().auth.token;
+        if(!savedToken) {
             return thunkAPI.rejectWithValue('Token is not exist.')
         }
-        setAuthHeader(saveTokin);
+        setAuthHeader(savedToken);
         const response = await goitAPI.get('/users/current');
         return response.data;
     }catch(error){

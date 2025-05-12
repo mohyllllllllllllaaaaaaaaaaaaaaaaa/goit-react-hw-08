@@ -12,6 +12,7 @@ import { selectIsRefreshing } from './redux/auth/selectors';
 import PrivateRoute from './components/PrivateRoute';
 import ResttrictedRoute from './components/RestrictedRoute';
 import  EditForm  from './components/editForm/EditForm';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,8 @@ function App() {
   }, [dispatch]);
 
   return isRefreshing ? null : (
+    <>
+     <Toaster position="top-center" reverseOrder={false} />
     <Routes>
       <Route path='/' element={<Layout/>}>
       <Route index element={<Home/> }/>
@@ -34,7 +37,7 @@ function App() {
       <Route path='*' element={<NotFound/> }/>
       </Route>
     </Routes>
-   
+    </>
   );
 }
 export default App;

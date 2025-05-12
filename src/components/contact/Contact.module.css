@@ -6,6 +6,7 @@
   font-weight: 500;
   align-items: flex-start;
   text-decoration:underline;
+  margin-right: 40px;
 }
 .icon{
     margin-right: 2px;
@@ -13,25 +14,32 @@
     height: 22px;
 }
 .delete{
-    margin-left: 2px;
-    margin-top: 30px;
+    
     background-color: rgb(170, 159, 180);
     border: solid 1px #1a062a;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
 }
 .delete:hover{
     background-color: rgb(219, 52, 52);
 }
 .editButton {
-    background-color: blue;
-    color: white;
-    border: none;
+    background-color:  rgb(170, 159, 180);
+    border: solid 1px #1a062a;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    margin-left: 10px;
+  color: black;
+  font-weight: 600;
   }
   .editButton:hover {
     background-color: darkblue;
+  }
+  .buttonBox{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
   }

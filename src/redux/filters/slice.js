@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const initialState = {
     name: "",
-    phone: "",
+    number: "",
 };
 
 const filterSlice = createSlice({
@@ -13,7 +14,7 @@ const filterSlice = createSlice({
             state.name = action.payload;
         },
         setPhoneFilter: (state, action) => {
-            state.phone = action.payload;
+            state.number = action.payload;
         },
 
     },

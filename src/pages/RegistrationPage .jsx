@@ -11,9 +11,15 @@ const Register = () => {
     return(
         <div>
             <main>
-            <h2>register page</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi, consequuntur exercitationem. Perferendis tenetur sunt quis nisi rem aperiam accusantium assumenda ullam molestias non, aliquid saepe mollitia ea totam nemo expedita?
-            Natus amet quaerat, deserunt provident sapiente assumenda accusantium esse optio, dolore quam alias necessitatibus aut mollitia illum quia repellat qui rerum autem. Rerum iusto quod et recusandae voluptas, laborum ratione.</p>
+            <h2>Sing Up!</h2>
+            <p>By registering in the Contact Manager App, you gain access to your own secure and personalized contact list. Registration allows you to:
+Safely store your contacts in the cloud
+Access your contacts from any device after logging in
+Add, delete, edit, and filter contacts with ease
+Ensure your data stays private and protected
+Create your account to start managing your contacts efficiently and securely!
+
+</p>
             <RegistrationForm/>
             </main>
         </div>

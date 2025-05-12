@@ -36,15 +36,6 @@ export const changeContact = createAsyncThunk('contacts/changeContact', async (c
         });
         return response.data;
     } catch (error) {
-        return rejectWithValue(error.response.data);
+        return rejectWithValue(error.response  ? error.response.data : error.message);
     }
 });
-
-//export const changeContact = createAsyncThunk('contacts/changeContact', async (contactData, { rejectWithValue }) => {
-  //  try{
-    //    const response = await goitAPI.patch(`/contacts/{contactId}`);
-      //  return response.data;
-    //}catch(error){
-      //  return rejectWithValue(error.response.data);
-//    }
-//});
